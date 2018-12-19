@@ -26,16 +26,6 @@ class Request
     /**
      * @var array
      */
-    private $cookie;
-
-    /**
-     * @var array
-     */
-    private $session;
-
-    /**
-     * @var array
-     */
     private $request;
 
     /**
@@ -45,32 +35,14 @@ class Request
 
     /**
      * Request constructor.
-     * @param array $post
-     * @param array $get
-     * @param array $files
-     * @param array $cookie
-     * @param array $session
-     * @param array $request
-     * @param array $server
      */
-    public function __construct(array $post, array $get, array $files, array $cookie, array $session, array $request, array $server)
+    public function __construct()
     {
-        $this->post = $post;
-        $this->get = $get;
-        $this->files = $files;
-        $this->cookie = $cookie;
-        $this->session = $session;
-        $this->request = $request;
-        $this->server = $server;
-    }
-
-    /**
-     * @return Request
-     */
-    public static function createFromGlobals()
-    {
-        session_start();
-        return new Request($_POST, $_GET, $_FILES, $_COOKIE, $_SESSION, $_REQUEST, $_SERVER);
+        $this->post = $_POST;
+        $this->get = $_GET;
+        $this->files = $_FILES;
+        $this->request = $_REQUEST;
+        $this->server = $_SERVER;
     }
 
     /**
@@ -102,7 +74,12 @@ class Request
      */
     public function getCookie()
     {
-        return $this->cookie;
+        return $_COOKIE;
+    }
+
+    public function setCookie($key, $value, $exp)
+    {
+        setcookie($key, $value, $exp)
     }
 
     /**
@@ -110,7 +87,12 @@ class Request
      */
     public function getSession()
     {
-        return $this->session;
+        return $_SESSION;
+    }
+
+    public function setSession($key, $value)
+    {
+        $_SESSION[$key] = $value;
     }
 
     /**
