@@ -29,7 +29,7 @@ class Route
     /**
      * @var array
      */
-    private $defaults;
+    private $defaults = [];
 
     /**
      * @var string

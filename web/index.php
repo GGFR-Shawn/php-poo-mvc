@@ -5,9 +5,7 @@ require __DIR__."/../vendor/autoload.php";
 
 use App\Request;
 use App\Router\Router;
-
-$request = Request::createFromGlobals();
-
+$request = new Request();
 // Si nous sommes en environnement de développment, alors nous affichons les erreurs.
 if($request->getEnv("ENV") == "dev") {
     error_reporting(E_ALL);

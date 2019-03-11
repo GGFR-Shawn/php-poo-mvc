@@ -79,7 +79,7 @@ class Request
 
     public function setCookie($key, $value, $exp)
     {
-        setcookie($key, $value, $exp)
+        setcookie($key, $value, $exp);
     }
 
     /**
